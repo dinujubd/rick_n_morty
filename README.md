@@ -1,1 +1,1 @@
-# rick_n_morty
+# Rick and Morty Characters
