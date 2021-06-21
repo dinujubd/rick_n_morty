@@ -2,9 +2,9 @@ import { Button, Grid, ListItem, ListItemAvatar, ListItemText } from '@material-
 import { Avatar, List } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setCurretCharacterAction, loadMoreAction } from '../../store/actions';
-import { CharacterChunk } from '../../store/characters';
-import { ApplicationDispatch, ApplicationState } from '../../store/store';
+import { setCurretCharacterAction, loadMoreAction } from '../../Store/actions';
+import { CharacterChunk } from '../../Store/characters';
+import { ApplicationDispatch, ApplicationState } from '../../Store/store';
 
 interface StateProps {
     characters: CharacterChunk[],
@@ -16,7 +16,7 @@ interface DispatchProps {
     loadMore: (url: string) => void
 }
 
-const CharacterGrid: React.FC<StateProps & DispatchProps> = (props) => {
+export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
 
     const [selectedIndex, selectItem] = useState(1);
 
@@ -32,7 +32,7 @@ const CharacterGrid: React.FC<StateProps & DispatchProps> = (props) => {
 
     return (
         <List>
-            {props.characters && props.characters.length && props.characters.map(x => <ListItem button selected={selectedIndex === x.id} onClick={onClickHandler(x.id)}>
+            {props.characters && props.characters.length && props.characters.map(x => <ListItem key={x.id + x.name} button selected={selectedIndex === x.id} onClick={onClickHandler(x.id)}>
                 <ListItemAvatar>
                     <Avatar src={x.image} />
                 </ListItemAvatar>
@@ -64,4 +64,4 @@ const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CharacterGrid);
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
