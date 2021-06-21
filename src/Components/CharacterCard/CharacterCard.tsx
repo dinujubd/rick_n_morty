@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Card, CardContent, CardMedia, createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Box, Card, createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Character } from '../../models/characters';
 import { ApplicationState } from '../../store/store';
@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             borderRadius: '0',
             boxShadow: 'none'
+        },
+        container: {
+            height: '90vh'
         },
         cover: {
             objectFit: 'cover',
@@ -30,11 +33,16 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: '50px'
         },
         genderIcon: {
-            marginLeft: 5
+            marginLeft: 5,
+            height: 20
         },
         details: {
             padding: '1em'
         },
+        lifeStatus: {
+            height:
+                40
+        }
     }),
 );
 
@@ -65,10 +73,9 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
 
     return (
         <Card className={classes.root}>
-
             <Grid container
                 direction="column"
-                style={{height: '90vh'}}
+                className={classes.container}
             >
                 <img className={classes.cover} alt={character.name} src={character.image} />
 
@@ -82,9 +89,9 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
                             {character.name}
                         </Typography>
 
-                        <img className={classes.genderIcon} style={{ height: 20 }} src={getGenderImage()} />
+                        <img className={classes.genderIcon} src={getGenderImage()} />
                     </Box>
-                    <img style={{ height: 40 }} src={getLifeStatus()} />
+                    <img className={classes.lifeStatus} src={getLifeStatus()} />
 
                 </Grid>
 
@@ -133,7 +140,7 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
                     </Grid>
 
                 </Grid>
-                 
+
             </Grid>
         </Card>
     )
