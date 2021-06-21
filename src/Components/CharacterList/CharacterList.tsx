@@ -2,7 +2,7 @@ import { Button, Grid, ListItem, ListItemAvatar, ListItemText } from '@material-
 import { Avatar, List } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { setCurretCharacter, loadMore } from '../../store/actions';
+import { setCurretCharacterAction, loadMoreAction } from '../../store/actions';
 import { CharacterChunk } from '../../store/characters';
 import { ApplicationDispatch, ApplicationState } from '../../store/store';
 
@@ -59,8 +59,8 @@ const mapStateToProps = (state: ApplicationState): StateProps => {
 
 const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     return {
-        selectCharacter: (id: number) => dispatch(setCurretCharacter(id)),
-        loadMore: (url: string) => dispatch(loadMore(url))
+        selectCharacter: (id: number) => dispatch(setCurretCharacterAction(id)),
+        loadMore: (url: string) => dispatch(loadMoreAction(url))
     }
 }
 

@@ -1,5 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import { Character, CharacterResponse } from '../models/characters';
+import { Actions } from './actions';
 
 
 export interface CharacterChunk {
@@ -27,9 +28,9 @@ const initialState: CharactersState = {
     characters: []
 }
 
-const initData = createAction('INIT')
-export const selectCharacter = createAction('SET_CHARACTER')
-export const appendCharacter = createAction('APPEND_CHARACTER');
+const initData = createAction(Actions.Init)
+export const selectCharacter = createAction(Actions.SetCurrentCharacter)
+export const appendCharacter = createAction(Actions.AppendCharacters);
 
 export const charactersReducer = createReducer(
     initialState,

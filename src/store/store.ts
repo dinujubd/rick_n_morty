@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { charactersReducer } from './characters'
-import { init, setCurretCharacter } from './actions'
+import { initAction, setCurretCharacterAction } from './actions'
 
 export const store = configureStore({
   reducer: {
@@ -8,8 +8,8 @@ export const store = configureStore({
   },
 })
 
-store.dispatch(init())
-store.dispatch(setCurretCharacter(1))
+store.dispatch(initAction())
+store.dispatch(setCurretCharacterAction(1))
 
 export type ApplicationState = ReturnType<typeof store.getState>
 export type ApplicationDispatch = typeof store.dispatch
