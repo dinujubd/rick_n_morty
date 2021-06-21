@@ -16,20 +16,25 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: 'none'
         },
         cover: {
-            height: 300,
+            objectFit: 'cover',
+            height: '65%'
         },
         name: {
             fontWeight: 900
         },
-        dataTitle:  {
+        dataTitle: {
             fontWeight: 'bold'
         },
         nameBlock: {
-            display: 'flex'
+            display: 'flex',
+            borderRadius: '50px'
         },
         genderIcon: {
             marginLeft: 5
-        }
+        },
+        details: {
+            padding: '1em'
+        },
     }),
 );
 
@@ -58,19 +63,19 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
         }
     }
 
-    return character ? (
+    return (
         <Card className={classes.root}>
-            <CardMedia
-                component="img"
-                alt={character.name}
-                image={character.image}
-                title={character.name}
-                className={classes.cover}
-            />
-            <CardContent>
+
+            <Grid container
+                direction="column"
+                style={{height: '90vh'}}
+            >
+                <img className={classes.cover} alt={character.name} src={character.image} />
+
                 <Grid
                     container
-                    justify={'space-between'}
+                    justify="space-between"
+                    className={classes.details}
                 >
                     <Box className={classes.nameBlock}>
                         <Typography className={classes.name} variant="h5" component="h2">
@@ -82,12 +87,11 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
                     <img style={{ height: 40 }} src={getLifeStatus()} />
 
                 </Grid>
-            </CardContent>
-            <CardContent>
 
                 <Grid
                     container
                     alignItems="stretch"
+                    className={classes.details}
                 >
                     <Grid
                         container
@@ -129,11 +133,10 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
                     </Grid>
 
                 </Grid>
-
-            </CardContent>
-
+                 
+            </Grid>
         </Card>
-    ) : <></>
+    )
 }
 
 CharacterCard.displayName = 'CharacterCard';
