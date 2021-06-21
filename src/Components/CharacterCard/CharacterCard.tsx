@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Box, Card, createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { Character } from '../../models/characters';
-import { ApplicationState } from '../../store/store';
-import Male from '../../assets/male.png'
-import Female from '../../assets/female.png'
-import Dead from '../../assets/dead.png'
-import Alive from '../../assets/alive.png'
-import Unknown from '../../assets/unknown.png'
+import { Character } from '../../Models/characters';
+import { ApplicationState } from '../../Store/store';
+import Male from '../../Assets/male.png'
+import Female from '../../Assets/female.png'
+import Dead from '../../Assets/dead.png'
+import Alive from '../../Assets/alive.png'
+import Unknown from '../../Assets/unknown.png'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -51,7 +51,7 @@ interface StateProps {
     character?: Character,
 }
 
-const CharacterCard: React.FC<StateProps> = ({ character }) => {
+export const CharacterCard: React.FC<StateProps> = ({ character }) => {
     const classes = useStyles();
 
     if (!character) return null;
@@ -78,7 +78,6 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
                 className={classes.container}
             >
                 <img className={classes.cover} alt={character.name} src={character.image} />
-
                 <Grid
                     container
                     justify="space-between"

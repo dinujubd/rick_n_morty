@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CharacterCard /> should renders correctly 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiGrid-root makeStyles-container-2 MuiGrid-container MuiGrid-direction-xs-column"
+  >
+    <img
+      alt="mock name"
+      className="makeStyles-cover-3"
+    />
+    <div
+      className="MuiGrid-root makeStyles-details-8 MuiGrid-container MuiGrid-justify-xs-space-between"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-10 makeStyles-nameBlock-6"
+      >
+        <h2
+          className="MuiTypography-root makeStyles-name-4 MuiTypography-h5"
+        >
+          mock name
+        </h2>
+        <img
+          className="makeStyles-genderIcon-7"
+        />
+      </div>
+      <img
+        className="makeStyles-lifeStatus-9"
+      />
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-details-8 MuiGrid-container"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+      >
+        <p
+          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+        >
+          Species
+        </p>
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+        />
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+      >
+        <p
+          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+        >
+          Location
+        </p>
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+        >
+          mock location
+        </p>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+      >
+        <p
+          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+        >
+          Origin
+        </p>
+        <p
+          className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+        >
+          mock origin
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
