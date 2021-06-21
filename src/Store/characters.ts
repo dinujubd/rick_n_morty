@@ -1,5 +1,5 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { Character, CharacterResponse } from '../models/characters';
+import { Character, CharacterResponse } from '../Models/characters';
 import { Actions } from './actions';
 
 
