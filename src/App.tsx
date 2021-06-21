@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { Box, Grid } from '@material-ui/core';
+import CharacterGrid from './Components/CharacterList/CharacterList';
+import CharacterCard from './Components/CharacterCard/CharacterCard';
+import AcrylicBackgroud from './Components/AcrylicBackground/AcrylicBackgroud'
+
+import SearchBar from './Components/SearchBar/SearchBar';
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload updated.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <AcrylicBackgroud />
+      <Grid
+        container
+        style={{ height: '100vh', zIndex: 888 }}
+        justify="center"
+        alignItems="center"
+      >
+        <Grid
+          style={{ height: '90vh' }}
+          container
+          justify="center"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid container direction="column" style={{ background: 'rgba(255,255,255, 0.6)', padding: 10, borderRadius: '10px 0 0 10px' }} xs={12} sm={6} lg={4} >
+            <Grid container justify="center">
+              <SearchBar />
+            </Grid>
+            <Box style={{ height: '70vh', overflowY: 'auto' }}>
+              <CharacterGrid />
+            </Box>
+          </Grid>
+          <Grid style={{ background: 'white', overflow: 'hidden' ,borderRadius: '0 10px 10px 0' }} xs={12} sm={6} lg={5} >
+            <CharacterCard />
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
+
   );
 }
 
