@@ -49,4 +49,6 @@ const mapStateToProps = (state: ApplicationState): StateProps => ({
     currentCharacter: state.characters.currentCharacter
 })
 
+AcrylicBackgroud.displayName = 'AcrylicBackgroud';
+
 export default connect(mapStateToProps)(AcrylicBackgroud);
