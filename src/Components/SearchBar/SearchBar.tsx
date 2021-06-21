@@ -3,8 +3,8 @@ import { createStyles, debounce, IconButton, InputBase, makeStyles, Modal, Paper
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from "react-redux"
-import { searchAction } from '../../store/actions'
-import { ApplicationDispatch } from "../../store/store";
+import { searchAction } from '../../Store/actions'
+import { ApplicationDispatch } from "../../Store/store";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -48,7 +48,7 @@ interface SearchConfig {
     gender?: string,
 }
 
-const SearchBar: React.FC<DispatchProps> = (props) => {
+export const SearchBar: React.FC<DispatchProps> = (props) => {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
