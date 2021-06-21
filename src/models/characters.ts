@@ -17,7 +17,7 @@ export interface Location {
     url: string;
 }
 
-export interface Result {
+export interface Character {
     id: number;
     name: string;
     status: string;
@@ -34,6 +34,6 @@ export interface Result {
 
 export interface CharacterResponse {
     info: Info;
-    results: Result[];
+    results: Character[];
 }
 
