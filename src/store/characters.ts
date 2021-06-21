@@ -1,17 +1,17 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { CharacterResponse } from '../models/characters';
+import { Character, CharacterResponse } from '../models/characters';
 
 
-export interface Character {
+export interface CharacterChunk {
     id: number,
     name: string,
     image: string
 }
 
 interface CharactersState {
-    characters: Character[],
-    currentCharacter: Character | null,
-    nextUrl: string | null
+    characters: CharacterChunk[],
+    currentCharacter?: Character,
+    nextUrl?: string
 }
 
 
@@ -24,9 +24,7 @@ const mapNextUrl = (source: CharacterResponse) => {
 }
 
 const initialState: CharactersState = {
-    characters: [],
-    currentCharacter: null,
-    nextUrl: null
+    characters: []
 }
 
 const initData = createAction('INIT')

@@ -3,17 +3,12 @@ import { Avatar, List } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setCurretCharacter, loadMore } from '../../store/actions';
-
-
-interface Character {
-    id: number,
-    name: string,
-    image: string
-}
+import { CharacterChunk } from '../../store/characters';
+import { ApplicationDispatch, ApplicationState } from '../../store/store';
 
 interface StateProps {
-    characters: { id: number; name: string; image: string }[],
-    nextUrl: string | null,
+    characters: CharacterChunk[],
+    nextUrl?: string,
 }
 
 interface DispatchProps {
@@ -54,7 +49,7 @@ const CharacterGrid: React.FC<StateProps & DispatchProps> = (props) => {
     )
 }
 
-const mapStateToProps = (state: any): StateProps => {
+const mapStateToProps = (state: ApplicationState): StateProps => {
     return {
         characters: state.characters.characters,
         nextUrl: state.characters.nextUrl,
@@ -62,7 +57,7 @@ const mapStateToProps = (state: any): StateProps => {
 }
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     return {
         selectCharacter: (id: number) => dispatch(setCurretCharacter(id)),
         loadMore: (url: string) => dispatch(loadMore(url))

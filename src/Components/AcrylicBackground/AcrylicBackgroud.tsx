@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { connect } from 'react-redux';
-
+import { ApplicationState } from '../../store/store';
 interface Character {
     id: number,
     name: string,
@@ -49,7 +49,7 @@ const AcrylicBackgroud: React.FC<StateProps> = (props) => {
 
 }
 
-const mapStateToProps = (state:any):StateProps => {
+const mapStateToProps = (state:ApplicationState):StateProps => {
     return {
         currentCharacter: state.characters.currentCharacter
     }

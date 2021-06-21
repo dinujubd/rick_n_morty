@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from "react-redux"
 import { searchAction } from '../../store/actions'
+import { ApplicationDispatch } from "../../store/store";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -162,10 +163,10 @@ const SearchBar: React.FC<DispatchProps> = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     return {
         search: (searchConfig: SearchConfig) => dispatch(searchAction(searchConfig))
     }
 }
 
-export default connect(_ => { }, mapDispatchToProps)(SearchBar)
+export default connect(_ => _, mapDispatchToProps)(SearchBar)

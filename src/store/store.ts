@@ -11,5 +11,5 @@ export const store = configureStore({
 store.dispatch(init())
 store.dispatch(setCurretCharacter(1))
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type ApplicationState = ReturnType<typeof store.getState>
+export type ApplicationDispatch = typeof store.dispatch

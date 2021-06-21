@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Card, CardContent, CardMedia, createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Character } from '../../models/characters';
+import { ApplicationState } from '../../store/store';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -17,13 +18,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface StateProps {
-    character: Character,
+    character?: Character,
 }
 
 const CharacterCard: React.FC<StateProps> = ({ character }) => {
     const classes = useStyles();
 
-    return character && (
+    return character ? (
         <Card className={classes.root}>
 
             <CardMedia
@@ -64,14 +65,14 @@ const CharacterCard: React.FC<StateProps> = ({ character }) => {
             </CardContent>
 
         </Card>
-    )
+    ) : <></>
 }
 
 CharacterCard.displayName = 'CharacterCard';
 
 
 
-const mapStateToProps = (state: any): StateProps => {
+const mapStateToProps = (state: ApplicationState): StateProps => {
     return {
         character: state.characters.currentCharacter
     }
