@@ -24,17 +24,24 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         details: {
             padding: '1em'
+        }, logo: {
+            position: 'absolute',
+            left: '20px',
+            top: '20px',
+            height: '50px',
+            zIndex: -1,
         }
     }),
 );
 
-const Container: React.FC = () => {
-
+export const Container: React.FC = () => {
+    const logoUrl = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg";
     const classes = useStyles();
 
     return (
         <>
             <AcrylicBackgroud />
+            <img className={classes.logo} src={logoUrl} />
             <Grid
                 container
                 className={classes.root}
