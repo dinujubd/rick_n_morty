@@ -8,8 +8,9 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
     className="MuiGrid-root makeStyles-container-2 MuiGrid-container MuiGrid-direction-xs-column"
   >
     <img
-      alt="mock name"
+      alt="Rick Sanchez"
       className="makeStyles-cover-3"
+      src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
     />
     <div
       className="MuiGrid-root makeStyles-details-8 MuiGrid-container MuiGrid-justify-xs-space-between"
@@ -18,16 +19,18 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         className="MuiBox-root MuiBox-root-10 makeStyles-nameBlock-6"
       >
         <h2
-          className="MuiTypography-root makeStyles-name-4 MuiTypography-h5"
+          className="MuiTypography-root makeStyles-name-4 MuiTypography-h5 MuiTypography-colorTextSecondary"
         >
-          mock name
+          RICK SANCHEZ
         </h2>
         <img
           className="makeStyles-genderIcon-7"
+          src="male.png"
         />
       </div>
       <img
         className="makeStyles-lifeStatus-9"
+        src="alive.png"
       />
     </div>
     <div
@@ -43,7 +46,9 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         </p>
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
-        />
+        >
+          Human
+        </p>
       </div>
       <div
         className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
@@ -56,7 +61,7 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
         >
-          mock location
+          Earth (Replacement Dimension)
         </p>
       </div>
       <div
@@ -70,9 +75,10 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
         >
-          mock origin
+          Earth (C-137)
         </p>
       </div>
+      
     </div>
   </div>
 </div>
