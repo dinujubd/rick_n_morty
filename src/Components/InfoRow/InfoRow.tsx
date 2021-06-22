@@ -10,17 +10,17 @@ interface Props {
 export const InfoRow: React.FC<Props> = React.memo(({ name, value }) => {
     const classes = useStyles();
 
-    if(!value) return null;
+    if (!value) return null;
 
     return (
         <Grid container justify="space-between">
-        <Typography className={classes.dataTitle} variant="body1" gutterBottom>
-            {name}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-            {value}
-        </Typography>
-    </Grid>
+            <Typography className={classes.dataTitle} variant="body1" gutterBottom>
+                {name}
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+                {value}
+            </Typography>
+        </Grid>
     )
 });
 
