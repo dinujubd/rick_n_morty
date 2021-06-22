@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoRow /> should renders correctly 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+>
+  <p
+    className="MuiTypography-root makeStyles-dataTitle-1 MuiTypography-body1 MuiTypography-gutterBottom"
+  >
+    Hi
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+  >
+    Hello
+  </p>
+</div>
+`;
