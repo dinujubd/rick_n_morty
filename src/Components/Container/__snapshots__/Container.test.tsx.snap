@@ -10,6 +10,7 @@ Array [
     />
   </div>,
   <img
+    alt="logo"
     className="makeStyles-logo-8"
     src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
   />,
@@ -153,11 +154,13 @@ Array [
                   RICK SANCHEZ
                 </h2>
                 <img
+                  alt="Rick Sanchez"
                   className="makeStyles-genderIcon-22"
                   src="male.png"
                 />
               </div>
               <img
+                alt="Rick Sanchez"
                 className="makeStyles-lifeStatus-24"
                 src="alive.png"
               />

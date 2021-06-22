@@ -24,11 +24,13 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
           RICK SANCHEZ
         </h2>
         <img
+          alt="Rick Sanchez"
           className="makeStyles-genderIcon-7"
           src="male.png"
         />
       </div>
       <img
+        alt="Rick Sanchez"
         className="makeStyles-lifeStatus-9"
         src="alive.png"
       />
