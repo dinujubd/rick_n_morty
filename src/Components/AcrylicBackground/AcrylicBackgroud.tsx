@@ -23,4 +23,4 @@ const mapStateToProps = (state: ApplicationState): StateProps => ({
 
 AcrylicBackgroud.displayName = 'AcrylicBackgroud'
 
-export default connect(mapStateToProps)(AcrylicBackgroud);
+export default connect(mapStateToProps)(React.memo(AcrylicBackgroud));

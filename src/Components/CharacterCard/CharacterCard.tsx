@@ -96,4 +96,4 @@ const mapStateToProps = (state: ApplicationState): StateProps => ({
     character: state.characters.currentCharacter
 })
 
-export default connect(mapStateToProps)(CharacterCard);
+export default connect(mapStateToProps)(React.memo(CharacterCard));
