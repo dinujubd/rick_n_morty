@@ -18,7 +18,7 @@ export const AcrylicBackgroud: React.FC<StateProps> = ({ background }) => {
 }
 
 const mapStateToProps = (state: ApplicationState): StateProps => ({
-    background: state.characters?.currentCharacter?.image ?? ''
+    background: state.characters?.currentCharacter?.character?.image ?? ''
 })
 
 AcrylicBackgroud.displayName = 'AcrylicBackgroud'

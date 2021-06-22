@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core"
+import { Box, Grid, Typography } from "@material-ui/core"
 import { useStyles } from "./InforRow.styles"
 
 interface Props {
@@ -10,17 +10,17 @@ interface Props {
 export const InfoRow: React.FC<Props> = React.memo(({ name, value }) => {
     const classes = useStyles();
 
-    if (!value) return null;
+    if (!value || value === 'unknown') return null;
 
     return (
-        <Grid container justify="space-between">
-            <Typography className={classes.dataTitle} variant="body1" gutterBottom>
+        <Box width="100%">
+            <Box  className={classes.dataTitle} mt={1}>
                 {name}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
+            </Box>
+            <Box>
                 {value}
-            </Typography>
-        </Grid>
+            </Box>
+        </Box>
     )
 });
 

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { connect } from 'react-redux';
-import { Box, Grid, Typography } from '@material-ui/core';
-import { Character } from '../../Models/characters';
+import { Avatar, Box, Grid, Typography } from '@material-ui/core';
+import { Character, Location } from '../../Models/characters';
 import { ApplicationState } from '../../Store/store';
 import Male from '../../Assets/male.png'
 import Female from '../../Assets/female.png'
@@ -12,9 +12,11 @@ import { InfoRow } from '../InfoRow/InfoRow';
 
 interface StateProps {
     character?: Character,
+    location?: Location,
+    origin?: Location,
 }
 
-export const CharacterCard: React.FC<StateProps> = ({ character }) => {
+export const CharacterCard: React.FC<StateProps> = ({ character, origin, location }) => {
     const classes = useStyles(character?.image ?? '')();
     const gender = useMemo(() => {
         switch (character?.gender) {
@@ -27,20 +29,29 @@ export const CharacterCard: React.FC<StateProps> = ({ character }) => {
     if (!character) return null;
 
     return (
-        <Box display="flex" flexBasis="100%" flexGrow="0" flexShrink="1" height="100%" width="100%" flexWrap="wrap" alignItems="flex-start" className={classes.root}>
-            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="65%" className={classes.cover}>
+        <Box display="flex" flexBasis="100%" flexGrow="0" flexShrink="1" height="100%" width="100%" flexWrap="wrap" alignItems="flex-start" padding={2} className={classes.root}>
+            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="30%">
+                <Box display="flex" justifyContent="center" alignItems="center" p={1} >
+                    <Avatar src={character.image} className={classes.avatar} />
+                </Box>
             </Box>
-            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="35%" pb={2}>
+            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="70%" pb={2}>
                 <Grid container justify="space-between" className={classes.details}>
-                    <Typography color="textSecondary" className={classes.name} variant="h5" component="h2">
+                    <Typography className={classes.name} variant="h5" component="h2">
                         {character.name.toUpperCase()}
                     </Typography>
                     <img alt={character.name} className={classes.genderIcon} src={gender} />
                 </Grid>
                 <Grid container alignItems="stretch" className={classes.details}>
-                    <InfoRow name="Status" value={<Status status={character.status} />} />
-                    <InfoRow name="Location" value={character.location.name} />
-                    <InfoRow name="Origin" value={character.origin.name} />
+                    <Grid container justify="space-between">
+                        <Box className={classes.dataTitle} mt={1}>
+                            <Box component="span">Featured Episodes:</Box>
+                            <Box ml={2} className={classes.castedCount} component="span">{`[${character.episode.length}]`}</Box>
+                        </Box>
+                        <Status status={character.status} />
+                    </Grid>
+                    <InfoRow name="Location" value={<span>{character.location.name}, Dimension: {location?.dimension}, Residents: {location?.residents.length}</span>} />
+                    <InfoRow name="Origin" value={<span>{character.origin.name}, Dimension: {origin?.dimension}, Residents: {origin?.residents.length}</span>} />
                     <InfoRow name="Type" value={character.type} />
                 </Grid>
             </Box>
@@ -51,7 +62,9 @@ export const CharacterCard: React.FC<StateProps> = ({ character }) => {
 CharacterCard.displayName = 'CharacterCard';
 
 const mapStateToProps = (state: ApplicationState): StateProps => ({
-    character: state.characters.currentCharacter
+    character: state.characters.currentCharacter?.character,
+    location: state.characters.currentCharacter?.location,
+    origin: state.characters.currentCharacter?.origin,
 })
 
 export default connect(mapStateToProps)(React.memo(CharacterCard));

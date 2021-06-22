@@ -10,12 +10,12 @@ export const useStyles = (backgrounImage: string) => makeStyles((theme: Theme) =
             height: theme.breakpoints.down('xs') ? 'auto': '90vh'
         },
         cover: {
-            background: `url(${backgrounImage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
+            height: '90%',
+            borderRadius: '50%',
         },
         name: {
-            fontWeight: 900
+            fontWeight: 900,
+            color: theme.palette.warning.dark
         },
         dataTitle: {
             fontWeight: 'bold'
@@ -27,6 +27,16 @@ export const useStyles = (backgrounImage: string) => makeStyles((theme: Theme) =
         details: {
             padding: theme.spacing(2)
         },
+        avatar: {
+            height: theme.spacing(20),
+            width: theme.spacing(20)
+        },
+        castedCount: {
+            height: theme.spacing(3),
+            width: theme.spacing(3),
+            borderRadius: '50%',
+            padding: theme.spacing(1),
+        }
         
     }),
 );
