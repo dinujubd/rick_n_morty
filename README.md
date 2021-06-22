@@ -6,12 +6,12 @@ Search Options:
 
 Large
 
-![image](https://user-images.githubusercontent.com/2369887/122934055-61406800-d399-11eb-8ef3-1296534565c7.png)
+![image](https://user-images.githubusercontent.com/2369887/122949909-3dcfea00-d3a6-11eb-83ec-6eaa03807965.png)
 
 Medium
 
-![image](https://user-images.githubusercontent.com/2369887/122934138-74ebce80-d399-11eb-99fe-47817da7256f.png)
+![image](https://user-images.githubusercontent.com/2369887/122949714-1547f000-d3a6-11eb-9e97-2002bf73b208.png)
 
 Small
-![image](https://user-images.githubusercontent.com/2369887/122934225-8d5be900-d399-11eb-8773-056877972599.png)
+![image](https://user-images.githubusercontent.com/2369887/122949792-242ea280-d3a6-11eb-8e23-eb768672c45f.png)
 
