@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios"
+import { Character, Location } from "../Models/characters";
 import { ApplicationDispatch } from "./store";
 
 interface SearchConfig {
@@ -26,12 +27,20 @@ const initAction = () => (dispatch: ApplicationDispatch) => axios.get(apiBaseUrl
     })
 )
 
-const setCurretCharacterAction = (id: number) => (dispatch: ApplicationDispatch) => axios.get(getCharacterUrl(id)).then((characterResponse) =>
+const setCurretCharacterAction = (id: number) => async (dispatch: ApplicationDispatch) => {
+    const character = await axios.get<Character>(getCharacterUrl(id))
+    const location = character?.data?.location?.url ? await axios.get<Location>(character.data.location.url) : null
+    const origin = character?.data?.origin?.url ? await axios.get<Location>(character.data.origin.url) : null
+
     dispatch({
         type: Actions.SetCurrentCharacter,
-        payload: characterResponse.data,
-    })
-)
+        payload: {
+            character: character.data,
+            location: location?.data,
+            origin: origin?.data
+        },
+    });
+}
 
 const loadMoreAction = (url: string) => (dispatch: ApplicationDispatch) => axios.get(url).then((characterResponse) =>
     dispatch({
@@ -44,12 +53,12 @@ const searchAction = (params: SearchConfig) => (dispatch: any) => axios.get(apiB
     dispatch({
         type: Actions.Init,
         payload: characterResponse.data,
-    })).catch((reason:AxiosError) => {
-        if(reason.response?.status === 404) {
+    })).catch((reason: AxiosError) => {
+        if (reason.response?.status === 404) {
             dispatch({
                 type: Actions.Init,
                 payload: [],
-            }) 
+            })
         }
     })
 

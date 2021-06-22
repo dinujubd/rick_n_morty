@@ -1,6 +1,7 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import { Character, CharacterResponse } from '../Models/characters';
 import { Actions } from './actions';
+import { Location } from '../Models/characters'
 
 
 export interface CharacterChunk {
@@ -11,7 +12,11 @@ export interface CharacterChunk {
 
 interface CharactersState {
     characters: CharacterChunk[],
-    currentCharacter?: Character,
+    currentCharacter?: {
+        character?: Character;
+        location?: Location;
+        origin?: Location
+    },
     nextUrl?: string
 }
 
@@ -36,14 +41,14 @@ export const charactersReducer = createReducer(
     initialState,
     (builder) => {
         builder
-            .addCase(initData, (state, action:any) => {
+            .addCase(initData, (state, action: any) => {
                 return { ...state, characters: mapCharacters(action.payload), nextUrl: mapNextUrl(action.payload) }
             })
-            .addCase(appendCharacter, (state, action:any) => {
+            .addCase(appendCharacter, (state, action: any) => {
                 return { ...state, characters: [...state.characters, ...mapCharacters(action.payload)], nextUrl: mapNextUrl(action.payload) }
             })
-            .addCase(selectCharacter, (state, action:any) => {
-                return {...state, currentCharacter: action.payload}
+            .addCase(selectCharacter, (state, action: any) => {
+                return { ...state, currentCharacter: action.payload }
             })
             .addDefaultCase((state, action) => { })
 
