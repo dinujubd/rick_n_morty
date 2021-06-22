@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { ApplicationDispatch } from "./store";
 
 interface SearchConfig {
@@ -42,9 +42,16 @@ const loadMoreAction = (url: string) => (dispatch: ApplicationDispatch) => axios
 
 const searchAction = (params: SearchConfig) => (dispatch: any) => axios.get(apiBaseUrl, { params: params }).then((characterResponse) =>
     dispatch({
-        type: 'INIT',
+        type: Actions.Init,
         payload: characterResponse.data,
-    }))
+    })).catch((reason:AxiosError) => {
+        if(reason.response?.status === 404) {
+            dispatch({
+                type: Actions.Init,
+                payload: [],
+            }) 
+        }
+    })
 
 
 export { initAction, searchAction, loadMoreAction, setCurretCharacterAction, Actions }

@@ -53,7 +53,7 @@ export const Container: React.FC = () => {
                     container
                     justify="center"
                 >
-                    <Grid container direction="column" className={classes.leftCol} xs={12} sm={6} lg={4} >
+                    <Grid container direction="column" className={classes.leftCol} xs={12} sm={4} lg={4} >
                         <Grid container justify="center">
                             <SearchBar />
                         </Grid>
@@ -61,7 +61,7 @@ export const Container: React.FC = () => {
                             <CharacterList />
                         </Box>
                     </Grid>
-                    <Grid className={classes.charDetails} xs={12} sm={6} lg={5} >
+                    <Grid className={classes.charDetails} xs={12} sm={5} lg={5} >
                         <CharacterCard />
                     </Grid>
                 </Grid>
