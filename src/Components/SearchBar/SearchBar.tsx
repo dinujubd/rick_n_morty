@@ -1,6 +1,5 @@
 import React from "react";
-import { createStyles, debounce, IconButton, InputBase, makeStyles, Modal, Paper, Theme, Box, Grid, Select, MenuItem, Button, NativeSelect } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/Menu';
+import { createStyles, debounce, IconButton, InputBase, makeStyles, Paper, Theme } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import { connect } from "react-redux"
 import { searchAction } from '../../Store/actions'
@@ -9,7 +8,7 @@ import { ApplicationDispatch } from "../../Store/store";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxWidth: 345,
+            width: '90%',
             margin: '5px',
             display: 'flex'
         },
@@ -51,113 +50,45 @@ interface SearchConfig {
 export const SearchBar: React.FC<DispatchProps> = (props) => {
 
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
     const [searchConfig, setSearchConfig] = React.useState<SearchConfig>({});
 
-    const changeHandler = (event: any) => {
-        setSearchConfig({...searchConfig, name: event.target.value})
-        props.search({ name: event.target.value })
-    };
+    const changeHandler = React.useCallback((event: any) => {
+        let tempSearch: Partial<SearchConfig> = {};
+        ('' + event.target.value).split(',')
+            .map((x) => x.trim())
+            .forEach(item => {
+                if (item.indexOf(':') === -1) {
+                    tempSearch.name = item.trim();
+                } else {
+                    const [key, val] = item.split(':')
+                    tempSearch = { ...tempSearch, [key]: val.trim() }
+                }
+            })
+        setSearchConfig({ ...searchConfig, ...tempSearch })
+    }, []);
+
+    React.useEffect(() => {
+        if (searchConfig) props.search(searchConfig);
+    }, [searchConfig])
 
     const debouncedChangeHandler = React.useCallback(
         debounce(changeHandler, 300)
         , []);
 
-    const handleClose = React.useCallback(() => {
-        setOpen(false)
-    }, [])
 
-
-    const changeSearchFilterHandler = (key: keyof SearchConfig) => (e: any) => {
-        const value = e.nativeEvent.target.value;
-        if (value && value === '*')
-            setSearchConfig({ ...searchConfig, [key]: null });
-        else
-            setSearchConfig({ ...searchConfig, [key]: value });
-    }
-
-    const handleSearchFilter = React.useCallback(() => {
-        props.search(searchConfig);
-        setOpen(false);
-    }, [searchConfig])
 
     return (
         <Paper component="form" className={classes.root}>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                <div className={classes.paper}>
-                    <h2 >Search Filter</h2>
-                    <Grid
-                        container
-                        justify="flex-start"
-                    >
-                        <Grid xs={6}>Status</Grid>
-                        <Grid xs={6}>
-                            <NativeSelect onChange={changeSearchFilterHandler('status')} value={searchConfig.status || '*'} className={classes.fiterSelect}>
-                                <option value="*">Any</option>
-                                <option value="Alive">Alive</option>
-                                <option value="Dead">Dead</option>
-                                <option value="unknown">unknown</option>
-                            </NativeSelect>
-                        </Grid>
-                        <Grid xs={6}>Species</Grid>
-                        <Grid xs={6}>
-                            <Select onChange={changeSearchFilterHandler('species')} value={searchConfig.species || '*'} className={classes.fiterSelect}>
-                                <option value="*">Any</option>
-                                <option value="Human">Human</option>
-                                <option value="Alien">Alien</option>
-                                <option value="Humanoid">Humanoid</option>
-                                <option value="Mythological Creature">Mythological Creature</option>
-                                <option value="Poopybutthole">Poopybutthole</option>
-                                <option value="Robot">Robot</option>
-                                <option value="Cronenberg">Cronenberg</option>
-                                <option value="Disease">Disease</option>
-                                <option value="unknown">unknown</option>
-                            </Select>
-                        </Grid>
-                        <Grid xs={6}>Type</Grid>
-                        <Grid xs={6}>
-                            <Select onChange={changeSearchFilterHandler('type')} value={searchConfig.type || '*'} className={classes.fiterSelect}>
-                                <option value="*">Any</option>
-                                <option value="Genetic experiment">Genetic experiment</option>
-                                <option value="Superhuman (Ghost trains summoner)">Superhuman (Ghost trains summoner)</option>
-                                <option value="Parasite">Parasite</option>
-                                <option value="Human with antennae">Human with antennae</option>
-                                <option value="Human with ants in his eyes">Human with ants in his eyes</option>
-                            </Select>
-                        </Grid>
-                        <Grid xs={6}>Gender</Grid>
-                        <Grid xs={6}>
-                            <Select onChange={changeSearchFilterHandler('gender')} value={searchConfig.gender || '*'} className={classes.fiterSelect}>
-                                <option value="*">Any</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="unknown">Unknown</option>
-
-                            </Select>
-
-
-                        </Grid>
-                        <Button onClick={handleSearchFilter} variant="contained" color="secondary">Search</Button>
-                    </Grid>
-                </div>
-            </Modal>
-            <IconButton className={classes.iconButton} aria-label="menu">
-                <MenuIcon onClick={() => setOpen(true)} />
-            </IconButton>
-            <InputBase
-                className={classes.input}
-                placeholder="Search Character"
-                inputProps={{ 'aria-label': 'Search Character' }}
-                onChange={debouncedChangeHandler}
-            />
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
+            <InputBase
+                className={classes.input}
+                placeholder="name: rick, status: alive, species: human"
+                inputProps={{ 'aria-label': 'Search Character' }}
+                onChange={debouncedChangeHandler}
+            />
+            
         </Paper>
 
     )
