@@ -25,19 +25,23 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
     useEffect(() => searchConfig && props.search(searchConfig), [props, searchConfig])
 
     const changeHandler = useCallback((event: any) => {
-        let tempSearch: Partial<SearchConfig> = {};
-        ('' + event.target.value).split(',')
-            .map((x) => x.trim())
-            .forEach(item => {
-                if (item.indexOf(':') === -1) {
-                    tempSearch.name = item.trim();
-                } else {
+
+        const textValue = `${event.target.value}`.trim();
+        let tempSearch: SearchConfig = {};
+
+        if (!textValue || textValue.indexOf(':') === -1) {
+            tempSearch.name = textValue;
+        } else {
+            // comma separated search tags
+            tempSearch = {};
+            ('' + event.target.value).split(',').map((x) => x.trim())
+                .forEach(item => {
                     const [key, val] = item.split(':')
-                    tempSearch = { ...tempSearch, [key]: val.trim() }
-                }
-            })
-        setSearchConfig({ ...searchConfig, ...tempSearch })
-    }, [searchConfig, setSearchConfig]);
+                    if(val) tempSearch = { ...tempSearch, [key]: val.trim() }
+                })
+        }
+        setSearchConfig({...tempSearch})
+    }, [setSearchConfig]);
 
     const debouncedChangeHandler = debounce(changeHandler, 300);
 
