@@ -22,7 +22,7 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
     const classes = useStyles();
     const [searchConfig, setSearchConfig] = useState<SearchConfig>({});
 
-    useEffect(() => searchConfig && props.search(searchConfig), [searchConfig])
+    useEffect(() => searchConfig && props.search(searchConfig), [props, searchConfig])
 
     const changeHandler = useCallback((event: any) => {
         let tempSearch: Partial<SearchConfig> = {};
@@ -37,9 +37,9 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
                 }
             })
         setSearchConfig({ ...searchConfig, ...tempSearch })
-    }, []);
+    }, [searchConfig, setSearchConfig]);
 
-    const debouncedChangeHandler = React.useCallback(debounce(changeHandler, 300), []);
+    const debouncedChangeHandler = React.useCallback(() => debounce(changeHandler, 300), [changeHandler]);
 
     return (
         <Paper component="form" className={classes.root}>

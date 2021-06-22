@@ -12,7 +12,7 @@ export const Container: React.FC = () => {
     return (
         <>
             <AcrylicBackgroud />
-            <img className={classes.logo} src={logoUrl} />
+            <img alt="logo" className={classes.logo} src={logoUrl} />
             <Grid
                 container
                 className={classes.root}

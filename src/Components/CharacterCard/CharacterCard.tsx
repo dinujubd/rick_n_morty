@@ -43,9 +43,9 @@ export const CharacterCard: React.FC<StateProps> = ({ character }) => {
                         <Typography color="textSecondary" className={classes.name} variant="h5" component="h2">
                             {character.name.toUpperCase()}
                         </Typography>
-                        <img className={classes.genderIcon} src={getGenderImage()} />
+                        <img alt={character.name} className={classes.genderIcon} src={getGenderImage()} />
                     </Box>
-                    <img className={classes.lifeStatus} src={getLifeStatus()} />
+                    <img  alt={character.name} className={classes.lifeStatus} src={getLifeStatus()} />
                 </Grid>
 
                 <Grid container alignItems="stretch" className={classes.details}>

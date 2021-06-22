@@ -22,12 +22,12 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
     const onClickHandler = useCallback((id: number) => () => {
         selectItem(id);
         props.selectCharacter(id);
-    }, [])
+    }, [selectItem, props])
 
     const onLoadMoreHandler = useCallback(() => {
         if (props.nextUrl)
             props.loadMore(props.nextUrl);
-    }, [])
+    }, [props])
 
     return (
         <List>
