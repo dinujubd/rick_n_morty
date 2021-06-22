@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Grid, ListItem, ListItemAvatar, ListItemText, Avatar, List } from '@material-ui/core';
+import { Grid, ListItem, ListItemAvatar, ListItemText, Avatar, List, Link } from '@material-ui/core';
 import { setCurretCharacterAction, loadMoreAction } from '../../Store/actions';
 import { CharacterChunk } from '../../Store/characters';
 import { ApplicationDispatch, ApplicationState } from '../../Store/store';
@@ -39,9 +39,15 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
             </ListItem>) : <ListItem> <Grid container justify="center">No characters found</Grid></ListItem>}
             {props.nextUrl && <ListItem>
                 <Grid container justify="center">
-                    <Button color="secondary" onClick={onLoadMoreHandler}>
-                        Load More
-                    </Button>
+                <Link
+                    component="button"
+                    variant="body1"
+                    onClick={onLoadMoreHandler}
+                    color="secondary"
+                    >
+                    Load More
+                    </Link>
+
                 </Grid>
             </ListItem>}
         </List>
