@@ -1,7 +1,6 @@
-import { Button, Grid, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
-import { Avatar, List } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
+import { Button, Grid, ListItem, ListItemAvatar, ListItemText, Avatar, List } from '@material-ui/core';
 import { setCurretCharacterAction, loadMoreAction } from '../../Store/actions';
 import { CharacterChunk } from '../../Store/characters';
 import { ApplicationDispatch, ApplicationState } from '../../Store/store';
@@ -20,15 +19,15 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
 
     const [selectedIndex, selectItem] = useState(1);
 
-    const onClickHandler = (id: number) => () => {
+    const onClickHandler = useCallback((id: number) => () => {
         selectItem(id);
         props.selectCharacter(id);
-    }
+    }, [])
 
-    const onLoadMoreHandler = () => {
+    const onLoadMoreHandler = useCallback(() => {
         if (props.nextUrl)
             props.loadMore(props.nextUrl);
-    }
+    }, [])
 
     return (
         <List>
@@ -36,7 +35,7 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
                 <ListItemAvatar>
                     <Avatar src={x.image} />
                 </ListItemAvatar>
-                <ListItemText  primary={x.name} />
+                <ListItemText primary={x.name} />
             </ListItem>) : <ListItem> <Grid container justify="center">No characters found</Grid></ListItem>}
             {props.nextUrl && <ListItem>
                 <Grid container justify="center">
@@ -49,19 +48,16 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
     )
 }
 
-const mapStateToProps = (state: ApplicationState): StateProps => {
-    return {
-        characters: state.characters.characters,
-        nextUrl: state.characters.nextUrl,
-    }
-}
+CharacterList.displayName = 'CharacterList';
 
+const mapStateToProps = (state: ApplicationState): StateProps => ({
+    characters: state.characters.characters,
+    nextUrl: state.characters.nextUrl,
+})
 
-const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
-    return {
-        selectCharacter: (id: number) => dispatch(setCurretCharacterAction(id)),
-        loadMore: (url: string) => dispatch(loadMoreAction(url))
-    }
-}
+const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => ({
+    selectCharacter: (id: number) => dispatch(setCurretCharacterAction(id)),
+    loadMore: (url: string) => dispatch(loadMoreAction(url))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);
