@@ -39,7 +39,7 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
         setSearchConfig({ ...searchConfig, ...tempSearch })
     }, [searchConfig, setSearchConfig]);
 
-    const debouncedChangeHandler = React.useCallback(() => debounce(changeHandler, 300), [changeHandler]);
+    const debouncedChangeHandler = debounce(changeHandler, 300);
 
     return (
         <Paper component="form" className={classes.root}>
