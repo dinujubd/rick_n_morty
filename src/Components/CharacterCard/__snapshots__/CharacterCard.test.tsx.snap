@@ -15,24 +15,15 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
     <div
       className="MuiGrid-root makeStyles-details-8 MuiGrid-container MuiGrid-justify-xs-space-between"
     >
-      <div
-        className="MuiBox-root MuiBox-root-10 makeStyles-nameBlock-6"
+      <h2
+        className="MuiTypography-root makeStyles-name-4 MuiTypography-h5 MuiTypography-colorTextSecondary"
       >
-        <h2
-          className="MuiTypography-root makeStyles-name-4 MuiTypography-h5 MuiTypography-colorTextSecondary"
-        >
-          RICK SANCHEZ
-        </h2>
-        <img
-          alt="Rick Sanchez"
-          className="makeStyles-genderIcon-7"
-          src="male.png"
-        />
-      </div>
+        RICK SANCHEZ
+      </h2>
       <img
         alt="Rick Sanchez"
-        className="makeStyles-lifeStatus-9"
-        src="alive.png"
+        className="makeStyles-genderIcon-7"
+        src="male.png"
       />
     </div>
     <div
@@ -42,21 +33,32 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
       >
         <p
-          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+          className="MuiTypography-root makeStyles-dataTitle-10 MuiTypography-body1 MuiTypography-gutterBottom"
         >
-          Species
+          Status
         </p>
         <p
           className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
         >
-          Human
+          <span
+            className="MuiBox-root MuiBox-root-12"
+          >
+            <span
+              className="MuiBox-root MuiBox-root-13"
+            >
+              Alive
+            </span>
+            <span
+              className="MuiBox-root MuiBox-root-14 makeStyles-root-11"
+            />
+          </span>
         </p>
       </div>
       <div
         className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
       >
         <p
-          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+          className="MuiTypography-root makeStyles-dataTitle-10 MuiTypography-body1 MuiTypography-gutterBottom"
         >
           Location
         </p>
@@ -70,7 +72,7 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
         className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
       >
         <p
-          className="MuiTypography-root makeStyles-dataTitle-5 MuiTypography-body1 MuiTypography-gutterBottom"
+          className="MuiTypography-root makeStyles-dataTitle-10 MuiTypography-body1 MuiTypography-gutterBottom"
         >
           Origin
         </p>
@@ -80,7 +82,6 @@ exports[`<CharacterCard /> should renders correctly 1`] = `
           Earth (C-137)
         </p>
       </div>
-      
     </div>
   </div>
 </div>

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { connect } from 'react-redux';
-import { Box, Card, Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
+import { Card, Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import { Character } from '../../Models/characters';
 import { ApplicationState } from '../../Store/store';
 import Male from '../../Assets/male.png'
 import Female from '../../Assets/female.png'
-import Dead from '../../Assets/dead.png'
-import Alive from '../../Assets/alive.png'
 import Unknown from '../../Assets/unknown.png'
 import { useStyles } from './CharacterCard.styles';
+import { Status } from '../Status/Status';
+import { InfoRow } from '../InfoRow/InfoRow';
 
 interface StateProps {
     character?: Character,
@@ -18,74 +18,32 @@ export const CharacterCard: React.FC<StateProps> = ({ character }) => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('xs'));
     const classes = useStyles(matches)();
-
-    if (!character) return null;
-
-    const getGenderImage = () => {
-        switch (character.gender) {
+    const gender = useMemo(() => {
+        switch (character?.gender) {
             case 'Male': return Male;
             case 'Female': return Female;
-            case 'Unknown': return Unknown;
+            default: return Unknown;
         }
-    }
+    }, [character])
 
-    const getLifeStatus = () => {
-        switch (character.status) {
-            case 'Dead': return Dead;
-            case 'Alive': return Alive;
-        }
-    }
+    if (!character) return null;
 
     return (
         <Card className={classes.root}>
             <Grid container direction="column" className={classes.container}>
                 <img className={classes.cover} alt={character.name} src={character.image} />
                 <Grid container justify="space-between" className={classes.details}>
-                    <Box className={classes.nameBlock}>
                         <Typography color="textSecondary" className={classes.name} variant="h5" component="h2">
                             {character.name.toUpperCase()}
                         </Typography>
-                        <img alt={character.name} className={classes.genderIcon} src={getGenderImage()} />
-                    </Box>
-                    <img  alt={character.name} className={classes.lifeStatus} src={getLifeStatus()} />
+                    <img alt={character.name} className={classes.genderIcon} src={gender} />
                 </Grid>
 
                 <Grid container alignItems="stretch" className={classes.details}>
-                    <Grid container justify="space-between">
-                        <Typography className={classes.dataTitle} variant="body1" gutterBottom>
-                            Species
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            {character.species}
-                        </Typography>
-                    </Grid>
-
-                    <Grid container justify="space-between">
-                        <Typography className={classes.dataTitle} variant="body1" gutterBottom>
-                            Location
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            {character.location.name}
-                        </Typography>
-                    </Grid>
-
-                    <Grid container justify="space-between">
-                        <Typography className={classes.dataTitle} variant="body1" gutterBottom>
-                            Origin
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            {character.origin.name}
-                        </Typography>
-                    </Grid>
-
-                    {character.type && <Grid container justify="space-between">
-                        <Typography className={classes.dataTitle} variant="body1" gutterBottom>
-                            Type
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            {character.type}
-                        </Typography>
-                    </Grid>}
+                    <InfoRow name="Status" value={<Status status={character.status} />}/>
+                    <InfoRow name="Location" value={character.location.name}/>
+                    <InfoRow name="Origin" value={character.origin.name}/>
+                    <InfoRow name="Type" value={character.type}/>
                 </Grid>
             </Grid>
         </Card>
