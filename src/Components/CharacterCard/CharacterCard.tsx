@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { connect } from 'react-redux';
-import { Card, Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 import { Character } from '../../Models/characters';
 import { ApplicationState } from '../../Store/store';
 import Male from '../../Assets/male.png'
@@ -15,9 +15,7 @@ interface StateProps {
 }
 
 export const CharacterCard: React.FC<StateProps> = ({ character }) => {
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down('xs'));
-    const classes = useStyles(matches)();
+    const classes = useStyles(character?.image ?? '')();
     const gender = useMemo(() => {
         switch (character?.gender) {
             case 'Male': return Male;
@@ -29,24 +27,24 @@ export const CharacterCard: React.FC<StateProps> = ({ character }) => {
     if (!character) return null;
 
     return (
-        <Card className={classes.root}>
-            <Grid container direction="column" className={classes.container}>
-                <img className={classes.cover} alt={character.name} src={character.image} />
+        <Box display="flex" flexBasis="100%" flexGrow="0" flexShrink="1" height="100%" width="100%" flexWrap="wrap" alignItems="flex-start" className={classes.root}>
+            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="65%" className={classes.cover}>
+            </Box>
+            <Box flexGrow="0" flexShrink="1" flexBasis="100%" minWidth="100%" height="35%" pb={2}>
                 <Grid container justify="space-between" className={classes.details}>
-                        <Typography color="textSecondary" className={classes.name} variant="h5" component="h2">
-                            {character.name.toUpperCase()}
-                        </Typography>
+                    <Typography color="textSecondary" className={classes.name} variant="h5" component="h2">
+                        {character.name.toUpperCase()}
+                    </Typography>
                     <img alt={character.name} className={classes.genderIcon} src={gender} />
                 </Grid>
-
                 <Grid container alignItems="stretch" className={classes.details}>
-                    <InfoRow name="Status" value={<Status status={character.status} />}/>
-                    <InfoRow name="Location" value={character.location.name}/>
-                    <InfoRow name="Origin" value={character.origin.name}/>
-                    <InfoRow name="Type" value={character.type}/>
+                    <InfoRow name="Status" value={<Status status={character.status} />} />
+                    <InfoRow name="Location" value={character.location.name} />
+                    <InfoRow name="Origin" value={character.origin.name} />
+                    <InfoRow name="Type" value={character.type} />
                 </Grid>
-            </Grid>
-        </Card>
+            </Box>
+        </Box>
     )
 }
 

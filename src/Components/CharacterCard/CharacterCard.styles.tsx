@@ -1,26 +1,24 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-export const useStyles = (isMobile: boolean) => makeStyles((theme: Theme) =>
+export const useStyles = (backgrounImage: string) => makeStyles((theme: Theme) =>
     createStyles({
         root: {
             borderRadius: '0',
-            boxShadow: 'none'
+            minHeight: theme.breakpoints.down('xs') ? '500px' :'auto'
         },
         container: {
-            height: isMobile ? 'auto': '90vh'
+            height: theme.breakpoints.down('xs') ? 'auto': '90vh'
         },
         cover: {
-            objectFit: 'cover',
-            maxHeight: isMobile ? 'auto': '45%'
+            background: `url(${backgrounImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
         },
         name: {
             fontWeight: 900
         },
         dataTitle: {
             fontWeight: 'bold'
-        },
-        nameBlock: {
-            display: 'flex',
         },
         genderIcon: {
             marginLeft: 5,
@@ -29,9 +27,6 @@ export const useStyles = (isMobile: boolean) => makeStyles((theme: Theme) =>
         details: {
             padding: theme.spacing(2)
         },
-        lifeStatus: {
-            height:
-                40
-        }
+        
     }),
 );
