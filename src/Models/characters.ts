@@ -13,6 +13,9 @@ export interface Origin {
 }
 
 export interface Location {
+    id: number;
+    dimension: string;
+    residents: string[];
     name: string;
     url: string;
 }

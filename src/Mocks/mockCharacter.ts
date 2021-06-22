@@ -12,6 +12,9 @@ const mockCharacter: Character = {
         url: "https://rickandmortyapi.com/api/location/1"
     },
     location: {
+        id: 1,
+        dimension: '',
+        residents: [],
         name: "Earth (Replacement Dimension)",
         url: "https://rickandmortyapi.com/api/location/20"
     },
