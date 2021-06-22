@@ -32,12 +32,12 @@ export const CharacterList: React.FC<StateProps & DispatchProps> = (props) => {
 
     return (
         <List>
-            {props.characters && props.characters.length && props.characters.map(x => <ListItem key={x.id + x.name} button selected={selectedIndex === x.id} onClick={onClickHandler(x.id)}>
+            {props.characters && props.characters.length > 0 ? props.characters.map(x => <ListItem key={x.id + x.name} button selected={selectedIndex === x.id} onClick={onClickHandler(x.id)}>
                 <ListItemAvatar>
                     <Avatar src={x.image} />
                 </ListItemAvatar>
-                <ListItemText primary={x.name} />
-            </ListItem>)}
+                <ListItemText  primary={x.name} />
+            </ListItem>) : <ListItem> <Grid container justify="center">No characters found</Grid></ListItem>}
             {props.nextUrl && <ListItem>
                 <Grid container justify="center">
                     <Button color="secondary" onClick={onLoadMoreHandler}>
