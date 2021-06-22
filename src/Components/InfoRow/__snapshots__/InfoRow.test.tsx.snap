@@ -2,17 +2,17 @@
 
 exports[`<InfoRow /> should renders correctly 1`] = `
 <div
-  className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
+  className="MuiBox-root MuiBox-root-2"
 >
-  <p
-    className="MuiTypography-root makeStyles-dataTitle-1 MuiTypography-body1 MuiTypography-gutterBottom"
+  <div
+    className="MuiBox-root MuiBox-root-3 makeStyles-dataTitle-1"
   >
     Hi
-  </p>
-  <p
-    className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+  </div>
+  <div
+    className="MuiBox-root MuiBox-root-4"
   >
     Hello
-  </p>
+  </div>
 </div>
 `;
