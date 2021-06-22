@@ -145,24 +145,15 @@ Array [
             <div
               className="MuiGrid-root makeStyles-details-23 MuiGrid-container MuiGrid-justify-xs-space-between"
             >
-              <div
-                className="MuiBox-root MuiBox-root-25 makeStyles-nameBlock-21"
+              <h2
+                className="MuiTypography-root makeStyles-name-19 MuiTypography-h5 MuiTypography-colorTextSecondary"
               >
-                <h2
-                  className="MuiTypography-root makeStyles-name-19 MuiTypography-h5 MuiTypography-colorTextSecondary"
-                >
-                  RICK SANCHEZ
-                </h2>
-                <img
-                  alt="Rick Sanchez"
-                  className="makeStyles-genderIcon-22"
-                  src="male.png"
-                />
-              </div>
+                RICK SANCHEZ
+              </h2>
               <img
                 alt="Rick Sanchez"
-                className="makeStyles-lifeStatus-24"
-                src="alive.png"
+                className="makeStyles-genderIcon-22"
+                src="male.png"
               />
             </div>
             <div
@@ -172,21 +163,32 @@ Array [
                 className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
               >
                 <p
-                  className="MuiTypography-root makeStyles-dataTitle-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                  className="MuiTypography-root makeStyles-dataTitle-25 MuiTypography-body1 MuiTypography-gutterBottom"
                 >
-                  Species
+                  Status
                 </p>
                 <p
                   className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
                 >
-                  Human
+                  <span
+                    className="MuiBox-root MuiBox-root-27"
+                  >
+                    <span
+                      className="MuiBox-root MuiBox-root-28"
+                    >
+                      Alive
+                    </span>
+                    <span
+                      className="MuiBox-root MuiBox-root-29 makeStyles-root-26"
+                    />
+                  </span>
                 </p>
               </div>
               <div
                 className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
               >
                 <p
-                  className="MuiTypography-root makeStyles-dataTitle-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                  className="MuiTypography-root makeStyles-dataTitle-25 MuiTypography-body1 MuiTypography-gutterBottom"
                 >
                   Location
                 </p>
@@ -200,7 +202,7 @@ Array [
                 className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-space-between"
               >
                 <p
-                  className="MuiTypography-root makeStyles-dataTitle-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                  className="MuiTypography-root makeStyles-dataTitle-25 MuiTypography-body1 MuiTypography-gutterBottom"
                 >
                   Origin
                 </p>
@@ -210,7 +212,6 @@ Array [
                   Earth (C-137)
                 </p>
               </div>
-              
             </div>
           </div>
         </div>
