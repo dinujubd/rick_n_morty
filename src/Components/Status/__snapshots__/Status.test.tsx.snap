@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Status /> should renders correctly 1`] = `
+<span
+  className="MuiBox-root MuiBox-root-2"
+>
+  <span
+    className="MuiBox-root MuiBox-root-3"
+  >
+    success
+  </span>
+  <span
+    className="MuiBox-root MuiBox-root-4 makeStyles-root-1"
+  />
+</span>
+`;
