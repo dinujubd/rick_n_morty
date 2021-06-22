@@ -1,39 +1,10 @@
-import React from "react";
-import { createStyles, debounce, IconButton, InputBase, makeStyles, Paper, Theme } from "@material-ui/core";
+import React, { useCallback, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
-import { connect } from "react-redux"
-import { searchAction } from '../../Store/actions'
-import { ApplicationDispatch } from "../../Store/store";
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: '90%',
-            margin: '5px',
-            display: 'flex'
-        },
-        input: {
-            marginLeft: theme.spacing(1),
-            flex: 1,
-        },
-        iconButton: {
-            padding: 10,
-        },
-        paper: {
-            position: 'absolute',
-            width: 400,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-        },
-        fiterSelect: {
-            width: '100%'
-        },
-    }),
-);
+import { debounce, IconButton, InputBase, Paper } from '@material-ui/core';
+import { useStyles } from './SearchBar.styles';
+import { ApplicationDispatch } from '../../Store/store';
+import { searchAction } from '../../Store/actions';
 
 interface DispatchProps {
     search: (searchConfig: SearchConfig) => void
@@ -48,11 +19,12 @@ interface SearchConfig {
 }
 
 export const SearchBar: React.FC<DispatchProps> = (props) => {
-
     const classes = useStyles();
-    const [searchConfig, setSearchConfig] = React.useState<SearchConfig>({});
+    const [searchConfig, setSearchConfig] = useState<SearchConfig>({});
 
-    const changeHandler = React.useCallback((event: any) => {
+    useEffect(() => searchConfig && props.search(searchConfig), [searchConfig])
+
+    const changeHandler = useCallback((event: any) => {
         let tempSearch: Partial<SearchConfig> = {};
         ('' + event.target.value).split(',')
             .map((x) => x.trim())
@@ -67,15 +39,7 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
         setSearchConfig({ ...searchConfig, ...tempSearch })
     }, []);
 
-    React.useEffect(() => {
-        if (searchConfig) props.search(searchConfig);
-    }, [searchConfig])
-
-    const debouncedChangeHandler = React.useCallback(
-        debounce(changeHandler, 300)
-        , []);
-
-
+    const debouncedChangeHandler = React.useCallback(debounce(changeHandler, 300), []);
 
     return (
         <Paper component="form" className={classes.root}>
@@ -88,11 +52,11 @@ export const SearchBar: React.FC<DispatchProps> = (props) => {
                 inputProps={{ 'aria-label': 'Search Character' }}
                 onChange={debouncedChangeHandler}
             />
-            
         </Paper>
-
     )
 }
+
+SearchBar.displayName = 'SearchBar';
 
 const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     return {
@@ -100,4 +64,4 @@ const mapDispatchToProps = (dispatch: ApplicationDispatch): DispatchProps => {
     }
 }
 
-export default connect(_ => _, mapDispatchToProps)(SearchBar)
+export default connect(null, mapDispatchToProps)(SearchBar);

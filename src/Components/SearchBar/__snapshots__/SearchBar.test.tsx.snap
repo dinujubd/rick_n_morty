@@ -5,55 +5,6 @@ exports[`<SearchBar /> should renders correctly 1`] = `
   className="MuiPaper-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
 >
   <button
-    aria-label="menu"
-    className="MuiButtonBase-root MuiIconButton-root makeStyles-iconButton-3"
-    disabled={false}
-    onBlur={[Function]}
-    onDragLeave={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <span
-      className="MuiIconButton-label"
-    >
-      <svg
-        aria-hidden={true}
-        className="MuiSvgIcon-root"
-        focusable="false"
-        onClick={[Function]}
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-        />
-      </svg>
-    </span>
-  </button>
-  <div
-    className="MuiInputBase-root makeStyles-input-2"
-    onClick={[Function]}
-  >
-    <input
-      aria-label="Search Character"
-      className="MuiInputBase-input"
-      onAnimationStart={[Function]}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      placeholder="Search Character"
-      type="text"
-    />
-  </div>
-  <button
     aria-label="search"
     className="MuiButtonBase-root MuiIconButton-root makeStyles-iconButton-3"
     disabled={false}
@@ -86,5 +37,20 @@ exports[`<SearchBar /> should renders correctly 1`] = `
       </svg>
     </span>
   </button>
+  <div
+    className="MuiInputBase-root makeStyles-input-2"
+    onClick={[Function]}
+  >
+    <input
+      aria-label="Search Character"
+      className="MuiInputBase-input"
+      onAnimationStart={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="name: rick, status: alive, species: human"
+      type="text"
+    />
+  </div>
 </form>
 `;
