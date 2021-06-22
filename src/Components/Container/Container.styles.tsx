@@ -1,12 +1,12 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = (isMobile: boolean) => makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            height: '100vh'
+            height: isMobile ? 'auto': '100vh'
         },
         appContainer: {
-            height: '90vh'
+            height: isMobile ? 'auto': '90vh'
         },
         leftCol: {
             backgroundColor: `${theme.palette.background.paper}7`,
@@ -16,6 +16,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         },
         charList: { height: '70vh', overflowY: 'auto' },
         charDetails: {
+            height: isMobile ? 'auto': '90vh',
             background: theme.palette.background.paper,
             overflow: 'hidden',
             borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,

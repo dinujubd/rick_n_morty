@@ -4,10 +4,15 @@ import CharacterCard from "../CharacterCard/CharacterCard";
 import SearchBar from "../SearchBar/SearchBar";
 import CharacterList from '../CharacterList/CharacterList';
 import { useStyles } from "./Container.styles";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 export const Container: React.FC = () => {
     const logoUrl = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg";
-    const classes = useStyles();
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('xs'));
+    const classes = useStyles(matches)();
 
     return (
         <>
@@ -22,7 +27,8 @@ export const Container: React.FC = () => {
                 <Grid
                     className={classes.appContainer}
                     container
-                    justify="center"
+                    justify={matches ? "space-around" : "center"}
+                    direction="row"
                 >
                     <Grid container direction="column" className={classes.leftCol} xs={12} sm={4} lg={4} >
                         <Grid container justify="center">

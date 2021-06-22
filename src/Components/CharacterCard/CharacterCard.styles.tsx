@@ -1,17 +1,17 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = (isMobile: boolean) => makeStyles((theme: Theme) =>
     createStyles({
         root: {
             borderRadius: '0',
             boxShadow: 'none'
         },
         container: {
-            height: '90vh'
+            height: isMobile ? 'auto': '90vh'
         },
         cover: {
             objectFit: 'cover',
-            height: '60%'
+            maxHeight: isMobile ? 'auto': '45%'
         },
         name: {
             fontWeight: 900

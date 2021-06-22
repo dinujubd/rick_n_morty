@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Box, Card, Grid, Typography } from '@material-ui/core';
+import { Box, Card, Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import { Character } from '../../Models/characters';
 import { ApplicationState } from '../../Store/store';
 import Male from '../../Assets/male.png'
@@ -15,7 +15,9 @@ interface StateProps {
 }
 
 export const CharacterCard: React.FC<StateProps> = ({ character }) => {
-    const classes = useStyles();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('xs'));
+    const classes = useStyles(matches)();
 
     if (!character) return null;
 
