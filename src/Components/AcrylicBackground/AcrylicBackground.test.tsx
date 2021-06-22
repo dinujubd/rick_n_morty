@@ -5,7 +5,7 @@ import { AcrylicBackgroud } from './AcrylicBackgroud';
 describe('<AcrylicBackgroud />', () => {
     it('should renders correctly', () => {
         const tree = renderer
-            .create(<AcrylicBackgroud currentCharacter={{id: 1, name: "test", image: "http://test.image.url"}} />)
+            .create(<AcrylicBackgroud background="http://test.image.url"/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
